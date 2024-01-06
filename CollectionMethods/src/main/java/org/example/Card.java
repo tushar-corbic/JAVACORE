@@ -27,7 +27,7 @@ public class Card {
 
         int index = face.equals("10") ? 2 : 1;
         String faceString = face.substring(0, index);
-        return "%s%s(%d)".format(faceString, suit.getImage(), rank);
+        return String.format("%s%s(%d)", faceString, suit.getImage(), rank);
     }
 
     public static Card getNumericCard(Suit suit, int cardNumber) {
