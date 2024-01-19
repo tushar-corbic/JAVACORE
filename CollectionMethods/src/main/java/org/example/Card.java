@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Card {
@@ -22,6 +23,9 @@ public class Card {
         this.rank = rank;
     }
 
+    public static Comparator<Card> sortRankingReversedSuit(){
+        return Comparator.comparing((Card e)->e.rank).reversed().thenComparing((Card e)->e.suit);
+    }
     @Override
     public String toString() {
 
