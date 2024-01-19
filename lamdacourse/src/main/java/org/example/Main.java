@@ -1,19 +1,42 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+    record Person(String firstname, String lastName){
+        @Override
+        public String toString() {
+            return firstname +" "+lastName;
         }
+    }
+    public static void main(String[] args) {
+        List<Person> people = new ArrayList<>(Arrays.asList(
+                new Main.Person("Tushar", "Gupta"),
+                new Person("Paramhansa", "Yogananda"),
+                new Person("Yukteshwar","Giri")
+        ));
+        // using anonumous class
+        var comparatorLastname = new Comparator<Person>(){
+            @Override
+            public int compare(Person o1, Person o2){
+                return o1.lastName().compareTo(o2.lastName());
+            }
+        };
+
+//        people.sort(comparatorLastname);
+        people.sort(new Comparator<Person>(){
+            @Override
+            public int compare(Person o1, Person o2){
+                return o1.lastName().compareTo(o2.lastName());
+            }
+        });
+
+        people.sort((o1, o2)-> o1.lastName().compareTo(o2.lastName()));
+        System.out.println(people);
     }
 }
