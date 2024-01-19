@@ -1,19 +1,31 @@
 package org.example;
 
+import java.util.*;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        List<Integer> arr = new ArrayList<>(List.of(1,2,3,4,4,5,6,73,3,22));
+        arr.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Stream.of("One","Two", "Three").sorted().map(String::toUpperCase).forEach(System.out::println);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        String[] strings = {"one","two","three"};
+        var firstStream = Arrays.stream(strings).sorted(Comparator.reverseOrder());
+        var secondStream = Stream.of("One","two","three").map(String::toUpperCase);
+        Stream.concat(secondStream, firstStream).forEach(System.out::println);
+
+        Random random = new Random();
+        Stream.generate(()->random.nextInt(2))
+                .limit(10)
+                .forEach(s->System.out.print(s+ " "));
+        System.out.println();
+        IntStream.iterate(1, n->n+1)
+                .limit(20)
+                .forEach(s->System.out.print(s+" "));
     }
 }
