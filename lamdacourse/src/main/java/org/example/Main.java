@@ -38,5 +38,22 @@ public class Main {
 
         people.sort((o1, o2)-> o1.lastName().compareTo(o2.lastName()));
         System.out.println(people);
+
+
+        interface EnhanceComparator<T> extends Comparator<T>{
+            public int secondLevel(T o1, T o2);
+        }
+
+
+        var concreateEnhacedComparator = new EnhanceComparator<Person>(){
+            @Override
+            public int compare(Person o1, Person o2){
+                return -1;
+            }
+            @Override
+            public int secondLevel(Person o1, Person o2){
+                return -1;
+            }
+        };
     }
 }
