@@ -21,7 +21,7 @@ public class Example14 {
 
         studentList.forEach(System.out::println);
 
-        String students = Stream.generate(()->Student.getRandomStudent(jmc, pumc)).limit(2).map(Student::toJSON).collect(Collectors.joining(",","[","]"));
+        String students = Stream.generate(()->Student.getRandomStudent(jmc, pumc)).limit(2).map(Student::toJSON).collect(Collectors.joining(dilimiter,"[","]"));
         System.out.println(students);
 
         try{
