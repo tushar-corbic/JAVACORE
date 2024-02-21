@@ -2,6 +2,7 @@ package org.example.student;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.StringJoiner;
 
 public class CourseEngagement {
 
@@ -81,5 +82,17 @@ public class CourseEngagement {
         lastActiveMonth = month;
         lastActiveYear = year;
         engagementType = "Lecture " + lastLecture;
+    }
+
+    public String toJSON() {
+        return new StringJoiner(", ","{", "}")
+                .add("\"courseCode\":\"" + courseCode + "\"")
+                .add("\"engagementType\":\"" + engagementType + "\"")
+                .add("\"enrollmentMonth\":" + enrollmentMonth)
+                .add("\"enrollmentYear\":" + enrollmentYear)
+                .add("\"lastLecture\":" + lastLecture)
+                .add("\"lastActiveMonth\":" + lastActiveMonth)
+                .add("\"lastActiveYear\":" + lastActiveYear)
+                .toString();
     }
 }

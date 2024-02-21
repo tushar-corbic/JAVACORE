@@ -2,6 +2,7 @@ package org.example.student;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Student {
 
@@ -161,4 +162,17 @@ public class Student {
     }
 
 
+    public String toJSON() {
+        StringJoiner courses = new StringJoiner(",","[","]");
+        for(Course course : coursesEnrolled){
+            courses.add(course.toJSON());
+        }
+        String engagementMapstring = engagementMap.values().stream().map(CourseEngagement::toJSON).collect(Collectors.joining(",","[","]"));
+        return new StringJoiner(", ","{", "}")
+                .add("\"studentId\":" + studentId)
+                .add("\"demographics\":" + demographics.toJSON())
+                .add("\"coursesEnrolled\":" + courses)
+                .add("\"engagementMap\":" + engagementMapstring)
+                .toString();
+    }
 }
